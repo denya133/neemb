@@ -36,11 +36,8 @@ which was used for organizing code of express application on Node.js
 ## Getting started
 Create a new project using this skeleton:
 ```
-brunch new gh:denya133/brunch-with-ember-and-express <appname>
+git clone git@github.com:denya133/neemb.git <appname>
 cd <appname>
-git init
-git add .
-git commit -m "repo init"
 brunch watch --server
 ```
 Open [http://localhost:3333](http://localhost:3333) on your browser.
@@ -150,7 +147,7 @@ cake update-ember-date
 ```
 
 ## License
-All of brunch-with-ember-and-express is licensed under the MIT license.
+All of neemb is licensed under the MIT license.
 
 Copyright (c) 2013 Denis Trayzhon
 
