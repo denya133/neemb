@@ -35,10 +35,20 @@
     "express": "*",
     "jade": "~0.28.2",
     "debug": "~0.7.2",
-    "ansi-color": "*",
     "date-utils": "*",
+    "ansi-color": "*",
     "growl": "*",
-    "cordell": "*"
+    "cordell": "*",
+
+    "bcrypt": "*",
+    "connect-flash": "*",
+    "mongoose": "*",
+    "node-dir": "*",
+    "node-uuid": "*",
+    "passport": "*",
+    "passport-http-bearer": "*",
+    "view-helpers": "*"
+
   },
   "devDependencies": {
     "karma": "0.8.1",
@@ -61,6 +71,7 @@
     "skeleton",
     "ember",
     "express",
+    "mongoose",
     "ember-data",
     "coffeescript",
     "stylus",
