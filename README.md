@@ -1,4 +1,7 @@
-# Brunch with Ember and Express
+NEEMB
+=================
+
+NEEMB is a boilerplate that provides a nice starting point for MongoDB, Node.js, Express, and Ember.js based applications which use Brunch.io way. 
 An up-to-date [Brunch](http://brunch.io) skeleton for developing clean [Ember](http://emberjs.com) applications with ease.
 
 It was based on the skeleton from Huafu Gandon [brunch-with-ember-and-bootstrap](https://github.com/huafu/brunch-with-ember-and-bootstrap) and
