@@ -13,4 +13,4 @@ module.exports = App = Ember.Application.create
     @property name
     @type String
   ###
-  name: 'Brunch with Ember and Bootstrap'
+  name: 'NEEMB'

@@ -4,7 +4,7 @@ App = require 'app'
 # Remove this return to enable a store with a REST adapter on your app
 # if you're migrating, https://github.com/emberjs/data/blob/master/TRANSITION.md is a good help
 ###
-return
+# return
 
 ###*
   The application adapter
@@ -19,13 +19,14 @@ App.ApplicationAdapter = DS.RESTAdapter.extend
 
     @inheritDoc
   ###
-  host: 'http://www.google.com'
+  host: 'localhost'
+  
   ###*
     Put the path/namespace of your API here
 
     @inheritDoc
   ###
-  namespace: 'api/v1'
+  namespace: ''
 
 
 ###*
@@ -37,3 +38,7 @@ App.ApplicationAdapter = DS.RESTAdapter.extend
 ###
 App.ApplicationSerializer = DS.RESTSerializer.extend
   # youre code here
+  primaryKey: (type) ->
+    '_id'
+  serializeId: (id) ->
+    id.toString()
