@@ -1,6 +1,6 @@
 module.exports = (app, passport) ->
   # User Routes
-  users = require "../app/controllers/users_controller"
+  users = require "../controllers/users_controller"
   # Setting up the users api
   app.post "/users", users.create
   app.post "/users/session", users.session
@@ -15,6 +15,6 @@ module.exports = (app, passport) ->
   # Finish with setting up the userId param
   app.param "userId", users.user
 
-  # Home route
-  index = require "../app/controllers/index_controller"
-  app.get "/", index.render
+  # # Home route
+  # index = require "../controllers/index_controller"
+  # app.get "/", index.render

@@ -1,9 +1,33 @@
-express = require 'express'
-{join} = require 'path'
-{config} = require './config'
-routes = require './routes'
+express   = require 'express'
+fs        = require 'fs'
+{join}    = require 'path'
+{config}  = require './config'
+routes    = require './routes'
+passport  = require 'passport'
+
+# Load configurations
+env       = process.env.NODE_ENV || 'development'
+config_new    = require('./config/config')[env]
+mongoose  = require 'mongoose'
+
+# db connection
+db = mongoose.connect config_new.db
+
+# Models
+models_path = __dirname + '/models'
+fs.readdirSync(models_path).forEach (file)->
+  require models_path + '/' + file
+
+# Passport config
+require('./config/passport')(passport, config_new)
 
 app = express()
+
+# # Express settings
+# require('./config/express')(app, config_new, passport)
+
+# Routes
+require('./config/routes')(app, passport)
 
 app.configure 'production', ->
     app.use express.limit '5mb'
@@ -19,6 +43,8 @@ app.configure ->
     app.use express.cookieParser(config.cookie.secret)
     app.use express.session()
     app.use express.csrf()
+    app.use passport.initialize()
+    app.use passport.session()
     app.use app.router
     app.use express.static join __dirname, '..', 'public'
 
@@ -26,10 +52,12 @@ app.configure 'development', ->
     app.use express.errorHandler()
     app.locals.pretty = true
 
-app.get '/', routes.index('Brunch with Ember and Express', express.version)
+app.get '/', routes.index('NEEMB', express.version)
 app.get '/test', routes.test('Mocha Tests')
 
 ### Default 404 middleware ###
 app.use routes.error('Page not found :(', 404)
+
+
 
 module.exports = exports = app

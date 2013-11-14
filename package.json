@@ -41,6 +41,7 @@
     "cordell": "*",
 
     "bcrypt": "*",
+    "connect": "*",
     "connect-flash": "*",
     "mongoose": "*",
     "node-dir": "*",

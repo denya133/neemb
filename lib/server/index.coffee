@@ -5,6 +5,7 @@ exists = (require 'fs').exists or (require 'path').exists
 http = require 'http'
 cordell = require 'cordell'
 logger = require '../logger'
+mongoose  = require 'mongoose'
 
 class BrunchServer extends EventEmitter
     constructor: (config) ->
@@ -28,11 +29,11 @@ class BrunchServer extends EventEmitter
                 @ranger.on 'end', (files, stats) =>
                     setTimeout =>
                         @ranger.on 'add', =>
-                            @reload()
+                            mongoose.disconnect(@reload())
                         @ranger.on 'rem', =>
-                            @reload()
+                            mongoose.disconnect(@reload())
                         @ranger.on 'change', =>
-                            @reload()
+                            mongoose.disconnect(@reload())
                     , 1000
         @emit 'start', @
 

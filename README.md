@@ -14,6 +14,21 @@ and the skeleton from Elving Rodriguez [brunch-with-hipsters](https://github.com
 which was used for organizing code of express application on Node.js  
 
 
+## Warning
+Browser doesn't auto-reload because use connections to DB
+```
+mongoose  = require 'mongoose'
+
+# db connection
+db = mongoose.connect config_new.db
+
+# Models
+models_path = __dirname + '/models'
+fs.readdirSync(models_path).forEach (file)->
+  require models_path + '/' + file
+```
+
+
 ## Versions
 - [Ember v1.0.0](http://emberjs.com)
 - [Ember Data v1.0.0b2](https://github.com/emberjs/data)

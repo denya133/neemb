@@ -45,7 +45,7 @@ exports.config =
           "vendor#{DIR_SEP}scripts#{DIR_SEP}ember-data.dev.js"
           "vendor#{DIR_SEP}scripts#{DIR_SEP}ember-data.prod.js"
           "vendor#{DIR_SEP}scripts#{DIR_SEP}bootstrap#{DIR_SEP}tooltip.js"
-          
+
           "vendor#{DIR_SEP}scripts#{DIR_SEP}bootstrap#{DIR_SEP}*.js"
           "vendor#{DIR_SEP}scripts#{DIR_SEP}bootstrap-for-ember#{DIR_SEP}bs-core.js"
           "vendor#{DIR_SEP}scripts#{DIR_SEP}bootstrap-for-ember#{DIR_SEP}*.js"
@@ -138,11 +138,11 @@ exports.config =
         pattern: /.*\.coffee$/
         options:
           indentation:
-            value: 4
+            value: 2
             level: "error"
-    # tester:
-    #   enabled: on
-    #   mocha:
-    #     pattern: /^.*_test\.coffee$/
-    #     options:
-    #       reporter:'spec'
+    tester:
+      enabled: on
+      mocha:
+        pattern: /^.*_test\.coffee$/
+        options:
+          reporter:'spec'

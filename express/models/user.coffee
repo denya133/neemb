@@ -1,7 +1,8 @@
 mongoose = require "mongoose"
 bcrypt = require "bcrypt"
 Schema = mongoose.Schema
-userSchema = new Schema(
+
+userSchema = new Schema
   first_name: String
   last_name: String
   email: String
@@ -11,16 +12,8 @@ userSchema = new Schema(
   apikey:
     type: Schema.Types.ObjectId
     ref: "Apikey"
-  userType:
-    type: Schema.Types.ObjectId
-    ref: "UserType"
-  role:
-    type: Schema.Types.ObjectId
-    ref: "Role"
-  clients: [clientSchema]
-  phones: [phoneSchema]
-  addresses: [addressSchema]
-)
+
+
 userSchema.pre "save", (next, done) ->
   user = this
   if @isNew
@@ -29,6 +22,7 @@ userSchema.pre "save", (next, done) ->
   else
     user.updated_at = new Date
     next()
+
 userSchema.pre "save", (next, done) ->
   user = this
   if user.isModified("password")
@@ -37,6 +31,7 @@ userSchema.pre "save", (next, done) ->
       next()
   else
     next()
+    
 userSchema.statics.verifyPassword = (reqPassword, userPassword, cb) ->
   bcrypt.compare reqPassword, userPassword, (err, res) ->
     return cb(err)  if err
