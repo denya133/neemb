@@ -13,20 +13,20 @@ App = require 'app'
   @namespace App
   @extends DS.RESTAdapter
 ###
-App.ApplicationAdapter = DS.RESTAdapter.extend
-  ###*
-    Put the host of your API here
+App.ApplicationAdapter = DS.RESTAdapter.extend()
+  # ###*
+  #   Put the host of your API here
 
-    @inheritDoc
-  ###
-  host: 'localhost'
-  
-  ###*
-    Put the path/namespace of your API here
+  #   @inheritDoc
+  # ###
+  # # host: 'localhost'
 
-    @inheritDoc
-  ###
-  namespace: ''
+  # ###*
+  #   Put the path/namespace of your API here
+
+  #   @inheritDoc
+  # ###
+  # # namespace: ''
 
 
 ###*

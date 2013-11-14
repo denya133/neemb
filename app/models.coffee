@@ -2,6 +2,6 @@
 # Example:
 # `scaffolt model user`
 # require 'models/Apikey'
-# require 'models/User'
+require 'models/User'
 # require 'models/AuthManager'
 

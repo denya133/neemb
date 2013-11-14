@@ -1,2 +1,7 @@
 Template users
+{{#each user in controller}}
+  <div>
+    {{user.email}}
+  </div>
+{{/each}}
 {{outlet}}

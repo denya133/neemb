@@ -3,6 +3,7 @@
     <h1>NEEMB</h1>
     <nav class="nav">
       {{#linkTo 'index'}}Home{{/linkTo}}
+      {{#linkTo 'users'}}Users{{/linkTo}}
 
       {{#if isAuthenticated}}
         <a href="#">{{currentUser.email}}</a>

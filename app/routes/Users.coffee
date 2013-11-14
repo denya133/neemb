@@ -14,7 +14,7 @@ module.exports = App.UsersRoute = Ember.Route.extend
     @inheritDoc
   ###
   model: (params) ->
-    @_super arguments...
+    @get('store').findAll 'user'
 
   ###*
     Override this if needed, else remove it

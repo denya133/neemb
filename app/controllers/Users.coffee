@@ -7,5 +7,5 @@ App = require 'app'
   @namespace App
   @extends Ember.Controller
 ###
-module.exports = App.UsersController = Ember.Controller.extend
+module.exports = App.UsersController = Ember.ArrayController.extend()
   # put your code here
