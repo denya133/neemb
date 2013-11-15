@@ -5,3 +5,4 @@
 require 'models/User'
 # require 'models/AuthManager'
 
+require 'models/Session'

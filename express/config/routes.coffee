@@ -5,7 +5,7 @@ module.exports = (app, passport) ->
   users = require "../controllers/users_controller"
   # Setting up the users api
   app.post "/rest-api/users", express.bodyParser(), users.create
-  app.post "/rest-api/users/session", users.session
+  app.post "/rest-api/sessions", express.bodyParser(), users.session
   app.get "/rest-api/users", users.index
   app.get "/rest-api/users/me", passport.authenticate("bearer",
     session: false

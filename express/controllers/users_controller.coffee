@@ -4,10 +4,10 @@ Apikey   = mongoose.model 'Apikey'
 uuid     = require "node-uuid"
 
 exports.session = (req, res) ->
-  User.findOne(email: req.body.email).populate("apikey").exec (err, user) ->
+  User.findOne(email: req.body.session.email).populate("apikey").exec (err, user) ->
     return res.json(err)  if err
     return res.json(message: "Incorrect username or password.")  unless user
-    User.verifyPassword req.body.password, user.password, (err, result) ->
+    User.verifyPassword req.body.session.password, user.password, (err, result) ->
       if result
         res.json user: user
       else
@@ -19,7 +19,6 @@ exports.index = (req, res) ->
     res.json users: users
 
 exports.create = (req, res) ->
-  console.log req.body
   new_user = new User(req.body.user)
   new_user.save (err, saved_user, num_affected) ->
     new_apikey = new Apikey(

@@ -7,14 +7,21 @@ App = require 'app'
   @namespace App
   @extends Ember.Controller
 ###
-module.exports = App.SessionsNewController = Ember.ObjectController.extend
+module.exports = App.SessionsNewController = Ember.ArrayController.extend
 
   actions:
     loginUser: () ->
-      console.log 'kajsdhlf asldhfasldhflahksdgf '
-      # router = @get('target')
-      # data = @getProperties('email', 'password')
+      console.log 'kajsdhlf asldhfasldhflahksdgf'
 
+      session = @store.createRecord 'session', 
+        email: @get 'email'
+        password: CryptoJS.MD5(@get 'password').toString()
+
+      @set 'email', ''
+      @set 'password', ''
+
+      session.save().then (results) =>
+        console.log results.user
       # $.post '/users/session', data, (results) ->
       #   App.AuthManager.authenticate results.user.apikey.key, results.user.apikey.userId
       #   router.transitionTo 'index'
