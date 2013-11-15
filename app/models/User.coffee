@@ -1,4 +1,5 @@
 App = require 'app'
+{attr, hasMany, belongsTo} = DS
 
 ###*
   Model User
@@ -9,9 +10,10 @@ App = require 'app'
 ###
 module.exports = App.User = DS.Model.extend
   # put your code here
-  first_name: DS.attr('string')
-  last_name: DS.attr('string')
-  email: DS.attr('string')
+  first_name: attr 'string'
+  last_name: attr 'string'
+  email: attr 'string'
+  password: attr 'string'
 
 ### If any special serializer or adapter is needed for this model, use this code:
 

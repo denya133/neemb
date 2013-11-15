@@ -15,6 +15,12 @@ module.exports = App.UsersNewRoute = Ember.Route.extend
   ###
   model: (params) ->
     @_super arguments...
+    # store = @get 'store'
+    # store.push 'user', 
+    #   first_name: ""
+    #   last_name: ""
+    #   email: ""
+    
 
   ###*
     Override this if needed, else remove it
@@ -23,4 +29,4 @@ module.exports = App.UsersNewRoute = Ember.Route.extend
   ###
   setupController: (controller, model) ->
     @_super arguments...
-    # @controller.set 'model', App.User.createRecord()
+    #@controller.set 'model', App.User.createRecord()

@@ -19,6 +19,7 @@ exports.index = (req, res) ->
     res.json users: users
 
 exports.create = (req, res) ->
+  console.log req.body
   new_user = new User(req.body.user)
   new_user.save (err, saved_user, num_affected) ->
     new_apikey = new Apikey(

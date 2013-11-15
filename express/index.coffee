@@ -32,14 +32,23 @@ require('./config/routes')(app, passport)
 app.configure 'production', ->
   app.use express.limit '5mb'
 
+# allowCrossDomain = (req, res, next) ->
+#   res.header 'Access-Control-Allow-Origin', "*"
+#   res.header 'Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE'
+#   res.header 'Access-Control-Allow-Headers', 'Content-Type'
+#   next()
+
 app.configure ->
   app.set 'views', join __dirname, 'views'
   app.set 'view engine', config.view.engine
   app.use express.favicon()
   app.use express.logger 'dev'
   app.use express.bodyParser()
+  app.use express.json()
+  app.use express.urlencoded()
   app.use express.methodOverride()
   app.use express.compress()
+  # app.use allowCrossDomain
   app.use express.cookieParser(config.cookie.secret)
   app.use express.session()
   app.use express.csrf()

@@ -1,4 +1,5 @@
 App = require 'app'
+# User = App.User #require '../models/User'
 
 ###*
   Route UsersRoute
