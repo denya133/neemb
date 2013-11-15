@@ -11,23 +11,19 @@ module.exports = App.UsersNewController = Ember.ArrayController.extend
   # put your code here
   actions:
     createUser: () ->
-      console.log 'sldkgadsjkgh'
+      console.log 'createUser'
 
-      user = @store.createRecord('user', {
+      data = 'user':
         first_name: @get 'first_name'
         last_name: @get 'last_name'
         email: @get 'email'
         password: CryptoJS.MD5(@get 'password').toString()
-      })
 
       @set 'first_name', ''
       @set 'last_name', ''
       @set 'email', ''
       @set 'password', ''
-
-      user.save().then (results) =>
-        console.log results.user
-      # $.post '/users', { user: data }, (results) ->
-      #   App.AuthManager.authenticate results.user.apikey.key, results.user.apikey.userId
-      #   router.transitionTo 'index'
     
+      $.post '/rest-api/users', data, (results) ->
+        App.Auth.authenticate(results.user.apikey.key, results.user.apikey.userId).then () =>
+      @transitionToRoute 'index'

@@ -13,13 +13,18 @@ module.exports = App.UsersNewRoute = Ember.Route.extend
 
     @inheritDoc
   ###
+  init: () ->
+    @_super arguments...
+    console.log 'init of UsersNewRoute'
+    App.Auth = App.AuthManager.create() unless App.Auth
+    
+  ###*
+    Override this if needed, else remove it
+
+    @inheritDoc
+  ###
   model: (params) ->
     @_super arguments...
-    # store = @get 'store'
-    # store.push 'user', 
-    #   first_name: ""
-    #   last_name: ""
-    #   email: ""
     
 
   ###*

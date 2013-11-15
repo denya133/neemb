@@ -46,7 +46,7 @@ app.configure ->
   app.use express.cookieParser(config.cookie.secret)
   app.use express.bodyParser()
   app.use express.methodOverride()
-  # app.use express.compress()
+  app.use express.compress()
   # app.use allowCrossDomain
   app.use express.session()
   app.use express.csrf()

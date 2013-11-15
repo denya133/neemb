@@ -20,7 +20,7 @@ module.exports = App.CONFIG =
     @type Object
     @final
   ###
-  compilation:
+  BUILD:
     ###*
       Will be replaced with the name of the git current branch
       @property gitBranch
@@ -49,3 +49,26 @@ module.exports = App.CONFIG =
       @final
     ###
     date: new Date('{!date!}')
+    
+  ###*
+    API configuration
+
+    @property API
+    @type Object
+    @final
+  ###
+  API:
+    ###*
+      Host of the API server
+      @property host
+      @type String
+      @final
+    ###
+    host: "http://localhost:3000"
+    ###*
+      Base namespace of the API
+      @property namespace
+      @type String
+      @final
+    ###
+    namespace: 'rest-api'

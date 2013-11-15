@@ -31,14 +31,16 @@ App.ApplicationAdapter = DS.RESTAdapter.extend #DS.ActiveModelAdapter.extend #DS
 
     @inheritDoc
   ###
-  host: 'http://localhost:3000'
+  host: App.CONFIG.API.host
 
   ###*
     Put the path/namespace of your API here
 
     @inheritDoc
   ###
-  namespace: 'rest-api'
+  namespace: App.CONFIG.API.namespace
+
+  serializer: App.ApplicationSerializer
 
 
 ###*
@@ -50,8 +52,7 @@ App.ApplicationAdapter = DS.RESTAdapter.extend #DS.ActiveModelAdapter.extend #DS
 ###
 App.ApplicationSerializer = DS.RESTSerializer.extend #DS.ActiveModelSerializer.extend #DS.RESTSerializer.extend
   # youre code here
-  primaryKey: (type) ->
-    '_id'
+  primaryKey: '_id'
 
   serializeId: (id) ->
     id.toString()

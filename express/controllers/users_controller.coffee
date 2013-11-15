@@ -4,6 +4,7 @@ Apikey   = mongoose.model 'Apikey'
 uuid     = require "node-uuid"
 
 exports.session = (req, res) ->
+  console.log 'to exports.session'
   User.findOne(email: req.body.session.email).populate("apikey").exec (err, user) ->
     return res.json(err)  if err
     return res.json(message: "Incorrect username or password.")  unless user
@@ -14,11 +15,13 @@ exports.session = (req, res) ->
         res.json message: "Incorrect username or password."
 
 exports.index = (req, res) ->
+  console.log 'to exports.index'
   User.find().exec (err, users) ->
     return res.json error: err  if err
     res.json users: users
 
 exports.create = (req, res) ->
+  console.log 'to exports.create'
   new_user = new User(req.body.user)
   new_user.save (err, saved_user, num_affected) ->
     new_apikey = new Apikey(
@@ -33,15 +36,24 @@ exports.create = (req, res) ->
           res.json user: user
 
 exports.show = (req, res) ->
+  console.log 'to exports.show'
   user = req.profile
   res.json user: user
 
 exports.me = (req, res) ->
+  console.log 'to exports.me'
   res.json req.user or null
 
 exports.user = (req, res, next, id) ->
+  console.log 'to exports.user'
+  console.log id
   User.findById(id).exec (err, user) ->
     return next(err)  if err
     return next(new Error("Failed to load User " + id))  unless user
-    req.profile = user
-    next()
+    console.log user
+    user.populate "apikey", (err, user) ->
+      res.json err  if err
+      res.json user: user
+    # res.profile = user
+    # next()
+    # res.json user: user

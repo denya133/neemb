@@ -7,4 +7,5 @@
 # require 'controllers/Sessions'
 require 'controllers/SessionsNew'
 require 'controllers/UsersNew'
-# require 'controllers/Application'
+require 'controllers/Application'
+# require 'controllers/AuthManager'

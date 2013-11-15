@@ -13,6 +13,15 @@ module.exports = App.SessionsNewRoute = Ember.Route.extend
 
     @inheritDoc
   ###
+  init: () ->
+    @_super arguments...
+    console.log 'init of SessionsNewRoute'
+    App.Auth = App.AuthManager.create() unless App.Auth
+  ###*
+    Override this if needed, else remove it
+
+    @inheritDoc
+  ###
   model: (params) ->
     @_super arguments...
     # Ember.Object.create()

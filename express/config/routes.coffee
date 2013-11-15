@@ -10,7 +10,7 @@ module.exports = (app, passport) ->
   app.get "/rest-api/users/me", passport.authenticate("bearer",
     session: false
   ), users.me
-  app.get "/rest-api/users/:userId", passport.authenticate("bearer",
+  app.get "/rest-api/users/:userId", express.bodyParser(), passport.authenticate("bearer",
     session: false
   ), users.show
 

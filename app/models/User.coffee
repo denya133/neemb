@@ -15,6 +15,8 @@ module.exports = App.User = DS.Model.extend
   email: attr 'string'
   password: attr 'string'
 
+
+
 ### If any special serializer or adapter is needed for this model, use this code:
 
 App.UserAdapter = DS.RESTAdapter.extend
