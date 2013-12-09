@@ -1,0 +1,7 @@
+{
+    "files": [{
+        "from": "exp_model.coffee.hbs",
+        "to": "express/models/{{name}}.coffee"
+    }],
+    "dependencies": []
+}
