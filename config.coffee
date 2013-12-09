@@ -27,7 +27,7 @@ exports.config =
       joinTo: objectify(
         "javascripts#{DIR_SEP}app.min.js", (path) -> /^app/.test(path) and not /\.prod\./.test(path)
         "javascripts#{DIR_SEP}head.min.js", (path) -> /^vendor(\/|\\)head/.test(path) and not /\.prod\./.test(path)
-        "javascripts#{DIR_SEP}vendor.min.js", (path) -> /^vendor/.test(path) and not /\.prod\./.test(path)
+        "javascripts#{DIR_SEP}vendor.min.js", (path) -> /^vendor/.test(path) and not /\.prod\./.test(path) and not /.*(\/|\\)head(\/|\\).*/.test(path) and not /^vendor(\/|\\)test(\/|\\).*/.test(path) and not /.*[_].*/.test(path)
         # "test#{DIR_SEP}javascripts#{DIR_SEP}test-vendor.js", /^test(\/|\\)(?=vendor)/
 
         "test#{DIR_SEP}javascripts#{DIR_SEP}test-vendor.js", (path) -> /^vendor(\/|\\)test(\/|\\)scripts(\/|\\)(?!blanket|mocha-blanket)/.test(path) and not /\.prod\./.test(path)
@@ -102,7 +102,7 @@ exports.config =
         javascripts:
           joinTo: objectify(
             "javascripts#{DIR_SEP}app.js", (path) -> /^app/.test(path) and not /\.dev\./.test(path)
-            "javascripts#{DIR_SEP}vendor.min.js", (path) -> /^vendor/.test(path) and not /\.dev\./.test(path)
+            "javascripts#{DIR_SEP}vendor.min.js", (path) -> /^vendor/.test(path) and not /\.dev\./.test(path) and not /\brunch-reload\./.test(path) and not /.*(\/|\\)head(\/|\\).*/.test(path) and not /^vendor(\/|\\)test(\/|\\).*/.test(path) and not /.*[_].*/.test(path)
             "javascripts#{DIR_SEP}head.min.js", (path) -> /^vendor(\/|\\)head/.test(path) and not /\.dev\./.test(path)
           )
           order: jsOrder
