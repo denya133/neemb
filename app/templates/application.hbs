@@ -14,11 +14,11 @@
             Users
           </button>
         {{/linkTo}}
-        <a href="#">
+        {{#linkTo 'user.index' currentUser}}
           <button type="button" class="btn btn-warning">
             {{currentUser.email}}
           </button>
-        </a>
+        {{/linkTo}}
         <a href="#" {{action 'logout'}}>
           <button type="button" class="btn btn-danger">
             Logout

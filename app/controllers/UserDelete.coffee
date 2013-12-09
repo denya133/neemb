@@ -16,18 +16,9 @@ module.exports = App.UserDeleteController = Ember.ObjectController.extend
   ###
   content: null
 
-  # needs: 'client'
-
-  # actions:
-  #   delete: () ->
-  #     user = @get 'model'
-  #     client = @get('controllers.client.model')
-
-  #     Ember.run.next () ->
-  #       client.get('users').removeObject(user)
-  #       client.save()
-
-  #     client.on 'didUpdate', this, () ->
-  #       user.deleteRecord()
-  #       user.save()
-  #       @transitionToRoute 'users.index', client
+  actions:
+    delete: () ->
+      user = @get 'model'
+      user.deleteRecord()
+      user.save()
+      @transitionToRoute 'users.index'
