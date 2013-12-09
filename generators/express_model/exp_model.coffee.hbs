@@ -1,0 +1,8 @@
+mongoose = require "mongoose"
+Schema = mongoose.Schema
+
+{{name}}Schema = new Schema
+  # name: String
+
+
+mongoose.model "{{#camelize}}{{name}}{{/camelize}}", {{name}}Schema
