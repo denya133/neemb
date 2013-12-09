@@ -1,22 +1,17 @@
 App = require 'app'
 
 ###*
-  Route SessionsNewRoute
+  Route UsersIndexRoute
 
-  @class SessionsNewRoute
+  @class UsersIndexRoute
   @namespace App
   @extends App.AuthorizedRoute
 ###
-module.exports = App.SessionsNewRoute = App.AuthorizedRoute.extend
-  ###*
-    Override this if needed, else remove it
-
-    @inheritDoc
-  ###
-  init: () ->
+module.exports = App.UsersIndexRoute = App.AuthorizedRoute.extend
+  init: ()->
     @_super arguments...
-    console.log 'init of SessionsNewRoute'
-    App.Auth = App.AuthManager.create() unless App.Auth
+    console.log 'Init UsersIndexRoute'
+
   ###*
     Override this if needed, else remove it
 
@@ -24,7 +19,7 @@ module.exports = App.SessionsNewRoute = App.AuthorizedRoute.extend
   ###
   model: (params) ->
     @_super arguments...
-    # Ember.Object.create()
+    @get('store').findAll 'user'
 
   ###*
     Override this if needed, else remove it

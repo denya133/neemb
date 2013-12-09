@@ -2,9 +2,14 @@ App = require 'app'
 
 
 App.Router.map ->
-  # put your routes here
+  # Session Routes
   @resource 'sessions', () ->
     @route 'new'
 
+  # User Routes
   @resource 'users', () ->
-    @route 'new'
+    @route 'create'
+
+  @resource 'user', { path: 'user/:user_id' }, () ->
+    @route 'edit'
+    @route 'delete'

@@ -63,8 +63,10 @@ exports.config =
       joinTo: objectify(
         "stylesheets#{DIR_SEP}app.css", (path) ->
           # we need to exclude bootstrap files since they're included in the application.styl
-          /^(app|vendor)/.test(path) and not /^vendor(\/|\\)styles(\/|\\)(bootstrap|font\-awesome)(\/|\\)/.test(path)
+          /^(app|vendor)/.test(path) and not /^vendor(\/|\\)styles(\/|\\)(bootstrap|font\-awesome)(\/|\\)/.test(path) and not /^app(\/|\\)styles(\/|\\)(old_server)(\/|\\)/.test(path)
         "test#{DIR_SEP}stylesheets#{DIR_SEP}test.css", (path) ->/^test|vendor(\/|\\)test/.test(path)
+        "stylesheets#{DIR_SEP}main.css", (path) -> /^app(\/|\\)styles(\/|\\)(old_server)(\/|\\)main.css/.test(path)
+        "stylesheets#{DIR_SEP}responsive.css", (path) -> /^app(\/|\\)styles(\/|\\)(old_server)(\/|\\)responsive.css/.test(path)
       )
       order:
         before: [

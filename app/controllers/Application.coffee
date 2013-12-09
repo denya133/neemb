@@ -17,7 +17,32 @@ module.exports = App.ApplicationController = Ember.Controller.extend
     App.Auth.isAuthenticated()
   ).property('App.Auth.apiKey')
 
-  actions: 
+  isAdmin: (()->
+    user = App.Auth.get 'apiKey.user'
+    unless (user and typeof user isnt "undefined")
+      false
+    else
+      user.get('_data.role.name') is 'admin'
+  ).property('App.Auth.apiKey')
+
+  isSuper: (()->
+    user = App.Auth.get 'apiKey.user'
+    unless (user and typeof user isnt "undefined")
+      false
+    else
+      user.get('_data.role.name') is 'superadmin'
+  ).property('App.Auth.apiKey')
+
+  delRights: (()->
+    user = App.Auth.get 'apiKey.user'
+    unless (user and typeof user isnt "undefined")
+      false
+    else
+      role = user.get('_data.role.name')
+      if (role is "superadmin" or role is "admin") then true else false
+  ).property('App.Auth.apiKey')
+
+  actions:
     logout: () ->
       App.Auth.reset()
-      @transitionToRoute 'index'
+      @transitionToRoute 'sessions.new'

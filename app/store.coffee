@@ -42,6 +42,59 @@ App.ApplicationAdapter = DS.RESTAdapter.extend #DS.ActiveModelAdapter.extend #DS
 
   serializer: App.ApplicationSerializer
 
+  ajaxError: (jqXHR)->
+    error = @_super jqXHR
+    if jqXHR
+      response = JSON.parse(jqXHR.responseText)
+      switch jqXHR.status
+        when 401
+          App.FlashQueue.pushFlash 'error', response.message
+          App.__container__.lookup('router:main').transitionTo('sessions.new')
+        when 403
+          App.FlashQueue.pushFlash 'error', response.message
+          App.__container__.lookup('router:main').transitionTo('index')
+        when 404
+          console.log 'Not found'
+        when 500
+          console.log 'Server error'
+        else
+          console.log 'Unhandled error', jqXHR.status
+    error
+
+  ajax: (url, type, hash)->
+    adapter = this
+
+    new Ember.RSVP.Promise( (resolve, reject)->
+      hash = hash || {}
+      hash.url = url
+      hash.type = type
+      hash.dataType = 'json'
+      hash.context = adapter
+
+      if hash.data and type isnt 'GET'
+        hash.contentType = 'application/json; charset=utf-8'
+        hash.data = JSON.stringify hash.data
+
+      if adapter.headers isnt undefined
+        headers = adapter.headers
+        hash.beforeSend = (xhr)->
+          forEach.call(Ember.keys(headers), (key)->
+            xhr.setRequestHeader key, headers[key]
+          )
+
+      hash.success = (json, status, jqXHR)->
+        if json.error
+          App.FlashQueue.pushFlash 'error', json.message
+          Ember.run null, resolve, {}
+        else
+          Ember.run null, resolve, json
+
+      hash.error = (jqXHR, textStatus, errorThrown)=>
+        Ember.run null, reject, adapter.ajaxError(jqXHR)
+
+      Ember.$.ajax hash
+    )
+
 
 ###*
   If you need to customize the serializer for any reason, here is where it should go:
