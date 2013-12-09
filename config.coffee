@@ -25,9 +25,9 @@ exports.config =
   files:
     javascripts:
       joinTo: objectify(
-        "javascripts#{DIR_SEP}app.js", (path) -> /^app/.test(path) and not /\.prod\./.test(path)
-        "javascripts#{DIR_SEP}head.js", (path) -> /^vendor(\/|\\)head/.test(path) and not /\.prod\./.test(path)
-        "javascripts#{DIR_SEP}vendor.js", (path) -> /^vendor/.test(path) and not /\.prod\./.test(path)
+        "javascripts#{DIR_SEP}app.min.js", (path) -> /^app/.test(path) and not /\.prod\./.test(path)
+        "javascripts#{DIR_SEP}head.min.js", (path) -> /^vendor(\/|\\)head/.test(path) and not /\.prod\./.test(path)
+        "javascripts#{DIR_SEP}vendor.min.js", (path) -> /^vendor/.test(path) and not /\.prod\./.test(path)
         # "test#{DIR_SEP}javascripts#{DIR_SEP}test-vendor.js", /^test(\/|\\)(?=vendor)/
 
         "test#{DIR_SEP}javascripts#{DIR_SEP}test-vendor.js", (path) -> /^vendor(\/|\\)test(\/|\\)scripts(\/|\\)(?!blanket|mocha-blanket)/.test(path) and not /\.prod\./.test(path)
@@ -79,6 +79,7 @@ exports.config =
       precompile: true
       root: 'templates'
       joinTo: objectify(
+        "javascripts#{DIR_SEP}app.min.js", /^app/
         "javascripts#{DIR_SEP}app.js", /^app/
       )
 
@@ -101,7 +102,8 @@ exports.config =
         javascripts:
           joinTo: objectify(
             "javascripts#{DIR_SEP}app.js", (path) -> /^app/.test(path) and not /\.dev\./.test(path)
-            "javascripts#{DIR_SEP}vendor.js", (path) -> /^vendor/.test(path) and not /\.dev\./.test(path)
+            "javascripts#{DIR_SEP}vendor.min.js", (path) -> /^vendor/.test(path) and not /\.dev\./.test(path)
+            "javascripts#{DIR_SEP}head.min.js", (path) -> /^vendor(\/|\\)head/.test(path) and not /\.dev\./.test(path)
           )
           order: jsOrder
       plugins:

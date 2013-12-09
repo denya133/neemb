@@ -19,8 +19,11 @@ task 'build', 'build a production release', (options) ->
     throw err if err
     child_process.exec 'brunch build --production', (err) ->
       throw err if err
-      child_process.exec 'tar czf public.tgz public', (err) ->
-        console.info 'Production ready build done and packed in public.tgz, check public directory'
+      child_process.exec 'packer -b -s [1024] -i public/javascripts/app.js -o public/javascripts/app.min.js', (err) ->
+        throw err if err
+        console.info 'packer for obfuscation app.js successful done'
+        child_process.exec 'tar czf public.tgz public', (err) ->
+          console.info 'Production ready build done and packed in public.tgz, check public directory'
 
 
 # Test runner
