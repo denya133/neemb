@@ -1,21 +1,21 @@
 path = require("path")
-# rootPath = path.normalize(__dirname + "/..")
+rootPath = path.normalize(__dirname + "/..")
 
 module.exports =
   development:
-    db: "mongodb://192.168.2.35/clvr-admin-server-dev"
-    # root: rootPath
+    db: "mongodb://192.168.2.35/neemb-server-dev"
+    root: rootPath
     # app:
-    #   name: "neem"
+    #   name: "neemb"
 
   test:
-    db: "mongodb://192.168.2.35/clvr-admin-server-test"
-    # root: rootPath
+    db: "mongodb://192.168.2.35/neemb-server-test"
+    root: rootPath
     # app:
-    #   name: "neem"
+    #   name: "neemb"
 
   production:
-    db: "mongodb://192.168.2.35/clvr-admin-server"
-    # root: rootPath
+    db: "mongodb://192.168.2.35/neemb-server"
+    root: rootPath
     # app:
-    #   name: "neem"
+    #   name: "neemb"

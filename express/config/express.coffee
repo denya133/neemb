@@ -1,58 +1,72 @@
 # ###
 # Module dependencies.
 # ###
-# express = require("express")
-# helpers = require("view-helpers")
+express = require("express")
+helpers = require("view-helpers")
+{join}    = require 'path'
+routes    = require '../routes'
 
-# module.exports = (app, config, passport) ->
-#   # app.set "showStackError", true
+module.exports = (app, config, passport) ->
 
-#   # #Should be placed before express.static
-#   # app.use express.compress(
-#   #   filter: (req, res) ->
-#   #     (/json|text|javascript|css/).test res.getHeader("Content-Type")
+  console.log config.config.view.engine
+  allowCrossDomain = (req, res, next) ->
+    res.header "Access-Control-Allow-Origin", "*"
+    res.header "Access-Control-Allow-Methods", "GET,PUT,POST,DELETE"
+    res.header "Access-Control-Allow-Headers", "Content-Type, Authorization"
+    if "OPTIONS" is req.method
+      res.send 200
+    else
+      next()
 
-#   #   level: 9
-#   # )
+  hackDeleteHeaders = (req, res, next) ->
+    delete req.headers["transfer-encoding"]  if req.method is "DELETE"
+    next()
 
-#   # #Setting the fav icon and static folder
-#   # app.use express.favicon()
-#   # app.use express.static(config.root + "/public")
+  app.configure 'production', ->
+    app.use express.limit '5mb'
 
-#   #Don't use logger for test env
-#   # app.use express.logger("dev")  if process.env.NODE_ENV isnt "test"
+  app.set 'views', join __dirname, '..', 'views'
+  app.set 'view engine', config.config.view.engine
 
-#   #Set views path, template engine and default layout
-#   # app.set "views", config.root + "/app/views"
-#   # app.set "view engine", "jade"
+  app.enable "jsonp callback"
 
-#   # #Enable jsonp
-#   # app.enable "jsonp callback"
-#   app.configure ->
-#     # # cookieParser should be above session
-#     # app.use express.cookieParser()
-#     # # bodyParser should be above methodOverride
-#     # app.use express.bodyParser()
-#     # app.use express.methodOverride()
-#     # #dynamic helpers
-#     # app.use helpers(config.app.name)
-#     #use passport session
-#     app.use passport.initialize()
-#     app.use passport.session()
-#     #routes should be at the last
-#     # app.use app.router
-#     # #Assume "not found" in the error msgs is a 404. this is somewhat silly, but valid, you can do whatever you like, set properties, use instanceof etc.
-#     # app.use (err, req, res, next) ->
-#     #   #Treat as 404
-#     #   return next()  if ~err.message.indexOf("not found")
-#     #   #Log it
-#     #   console.error err.stack
-#     #   #Error page
-#     #   res.status(500).render "500",
-#     #     error: err.stack
+  app.configure ->
+    app.use express.favicon()
+    app.use express.logger 'dev'
+    app.use express.cookieParser(config.config.cookie.secret)
+    app.use express.bodyParser()
+    app.use express.methodOverride()
+    app.use express.compress()
+    app.use express.session()
+    # app.use express.csrf() # из за него не работает $.post в эмберном приложении при кросс доменном запросе
+    app.use allowCrossDomain
+    app.use hackDeleteHeaders
+    app.use passport.initialize()
+    app.use passport.session()
+    app.use app.router
+    app.use express.static join __dirname, '..', '..', 'public'
+    #Assume "not found" in the error msgs is a 404. this is somewhat silly, but valid, you can do whatever you like, set properties, use instanceof etc.
+    app.use (err, req, res, next) ->
+      #Treat as 404
+      return next()  if ~err.message.indexOf("not found")
+      #Log it
+      console.error err.stack
+      #Error page
+      res.status(500).render "500",
+        error: err.stack
 
-#     # #Assume 404 since no middleware responded
-#     # app.use (req, res, next) ->
-#     #   res.status(404).render "404",
-#     #     url: req.originalUrl
-#     #     error: "Not found"
+    #Assume 404 since no middleware responded
+    app.use (req, res, next) ->
+      res.status(404).render "404",
+        url: req.originalUrl
+        error: "Not found"
+
+  app.configure 'development', ->
+    app.use express.errorHandler()
+    app.locals.pretty = true
+
+  app.get '/', routes.index('NEEMB', express.version)
+  app.get '/test', routes.test('Mocha Tests')
+
+  ### Default 404 middleware ###
+  app.use routes.error('Page not found :(', 404)
