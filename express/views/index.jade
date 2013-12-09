@@ -4,9 +4,11 @@ include mixins/packages
 
 block head
   link(rel='stylesheet', href='stylesheets/app.css')
+  link(rel="stylesheet", type="text/css", href="stylesheets/main.css")
+  link(rel="stylesheet", type="text/css", href="stylesheets/responsive.css")
   //if IE 7
       link(rel='stylesheet', href='stylesheets/font-awesome-ie7.min.css')
-  script(src='javascripts/head.js')
+  script(src='javascripts/head.min.js')
 
 block content
   .container
@@ -17,7 +19,7 @@ block content
           small= version
     .row
       .span12
-        .hero-unit.well
+        .row.well
           p Welcome to Node.js with Ember, Express and Mongo on Brunch way.
           p: small <i class="icon-thumbs-up"></i> Based on 
             p: a(href="https://github.com/huafu/brunch-with-ember-and-bootstrap", target="_blank") Brunch with Ember and Bootstrap
@@ -30,8 +32,8 @@ block content
     
 block scripts
   script(src='/socket.io/socket.io.js')
-  script(src='javascripts/vendor.js')
-  script(src='javascripts/app.js', defer, onload="require('initialize');")
+  script(src='javascripts/vendor.min.js')
+  script(src='javascripts/app.min.js', defer, onload="require('initialize');")
   // Google Analytics: change UA-XXXXX-X to be your site's ID.
   script
     var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];

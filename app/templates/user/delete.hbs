@@ -1,0 +1,13 @@
+
+			{{#linkTo "user"}}
+				{{bs-icon name="circle-arrow-left"}}Back to User
+			{{/linkTo}}
+			<div class="body">	
+				<div class="info">
+					Are you sure you want to delete?
+				</div>
+				<div class="actions">
+					<a class="btn"{{action "delete"}}>Delete</a>
+					{{#linkTo "user" this}}Cancel{{/linkTo}}
+				</div>
+			</div>

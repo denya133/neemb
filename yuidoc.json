@@ -1,0 +1,11 @@
+{
+    "name": "NEEMB",
+    "description": "NEEMB is a boilerplate that provides a nice starting point for MongoDB, Node.js, Express, and Ember.js based applications which use Brunch.io way.",
+    "version": "0.6.0",
+    "url": "http://neemb.org/",
+    "logo": "app/assets/img/neemb-logo.png",
+    "options": {
+        "outdir": "apidocs",
+        "linkNatives": true
+    }
+}

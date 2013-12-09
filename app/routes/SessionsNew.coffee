@@ -5,9 +5,9 @@ App = require 'app'
 
   @class SessionsNewRoute
   @namespace App
-  @extends Ember.Route
+  @extends App.AuthorizedRoute
 ###
-module.exports = App.SessionsNewRoute = Ember.Route.extend
+module.exports = App.SessionsNewRoute = App.AuthorizedRoute.extend
   ###*
     Override this if needed, else remove it
 

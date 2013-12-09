@@ -1,0 +1,36 @@
+			<header>
+				<h2>List of users</h2>
+                {{#if controllers.application.delRights}}
+                    <div class="action">
+                        {{#linkTo "users.create" classNames="btn"}}
+                            {{bs-icon name="plus"}}Create New User
+                        {{/linkTo}}
+                    </div>
+                {{/if}}
+			</header>
+			<div class="body">
+				<ul class="links">
+					{{#each user in model}}
+						<li>
+                            {{#if controllers.application.delRights}}
+                                <div class="actions">
+                                    {{#if isAdmin}}
+                                    {{else}}
+                                    {{#linkTo "user.delete" user}}
+                                        {{bs-icon name="remove"}}
+                                    {{/linkTo}}
+                                    {{/if}}
+                                    {{#linkTo "user.edit" user}}
+                                        {{bs-icon name="pencil"}}
+                                    {{/linkTo}}
+							    </div>
+                            {{/if}}
+							<div class="title">
+								{{#linkTo "user" user}}
+									{{user.email}} (<span {{bindAttr class=":role user.roleName"}}>{{user.roleName}}</span>)
+								{{/linkTo}}
+							</div>
+						</li>
+					{{/each}}
+				</ul>
+			</div>

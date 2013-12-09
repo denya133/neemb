@@ -2,3 +2,4 @@
 # Example:
 # `scaffolt view user`
 require 'views/Application'
+require 'views/Flash'

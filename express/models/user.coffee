@@ -6,13 +6,19 @@ userSchema = new Schema
   first_name: String
   last_name: String
   email: String
-  created_at: Date
-  updated_at: Date
+  created_at:
+    type: Date
+    default: Date.now
+  updated_at:
+    type: Date
+    default: Date.now
   password: String
   apikey:
     type: Schema.Types.ObjectId
     ref: "Apikey"
-
+  role:
+    type: Schema.Types.ObjectId
+    ref: "Role"
 
 userSchema.pre "save", (next, done) ->
   user = this
@@ -38,3 +44,5 @@ userSchema.statics.verifyPassword = (reqPassword, userPassword, cb) ->
     cb null, res
 
 mongoose.model 'User', userSchema
+
+

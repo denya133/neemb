@@ -2,15 +2,34 @@
   <div class="container">
     <h1>NEEMB</h1>
     <nav class="nav">
-      {{#linkTo 'index'}}Home{{/linkTo}}
-      {{#linkTo 'users'}}Users{{/linkTo}}
+      {{#linkTo 'index'}}
+        <button type="button" class="btn btn-default">
+          Home
+        </button>
+      {{/linkTo}}
 
       {{#if isAuthenticated}}
-        <a href="#">{{currentUser.email}}</a>
-        <a href="#" {{action 'logout'}}>Logout</a>
+        {{#linkTo 'users.index'}}
+          <button type="button" class="btn btn-default">
+            Users
+          </button>
+        {{/linkTo}}
+        {{#linkTo 'user.index' currentUser}}
+          <button type="button" class="btn btn-warning">
+            {{currentUser.email}}
+          </button>
+        {{/linkTo}}
+        <a href="#" {{action 'logout'}}>
+          <button type="button" class="btn btn-danger">
+            Logout
+          </button>
+        </a>
       {{else}}
-        {{#linkTo 'users.new'}}Register{{/linkTo}}
-        {{#linkTo 'sessions.new'}}Login{{/linkTo}}
+        {{#linkTo 'sessions.new'}}
+          <button type="button" class="btn btn-success">
+            Login
+          </button>
+        {{/linkTo}}
       {{/if}}
     </nav>
   </div>
@@ -18,5 +37,5 @@
 <div class="container">{{outlet}}</div>
 <hr/>
 <footer>
-  <p>© Company 2013</p>
+  <p>© NEEMB 2013</p>
 </footer>
