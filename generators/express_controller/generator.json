@@ -1,0 +1,7 @@
+{
+    "files": [{
+        "from": "exp_controller.coffee.hbs",
+        "to": "express/controllers/{{name}}_controller.coffee"
+    }],
+    "dependencies": []
+}
