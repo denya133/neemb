@@ -63,8 +63,10 @@ module.exports = App.CONFIG =
       @property host
       @type String
       @final
+      for example:
+        host: "http://localhost:3000"
     ###
-    host: "http://localhost:3000"
+    host: ""
     ###*
       Base namespace of the API
       @property namespace
