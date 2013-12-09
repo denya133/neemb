@@ -24,8 +24,7 @@ module.exports = App.SessionsNewController = Ember.ArrayController.extend
       session.on 'didCreate', this, (results) ->
         key = results.get('_data.apikey.key')
         userId = results.get('_data.apikey.userId')
-        App.Auth.authenticate(key, userId).then (auth) ->
-          console.log 'App.Auth.authenticate successful'          
+        App.Auth.authenticate(key, userId).then (auth) ->          
           # apiKey = auth.get 'apiKey'
           # role = apiKey.get 'user._data.role.name'
           # switch role
