@@ -51,7 +51,8 @@
     "view-helpers": "*",
 
     "lodash": "*",
-    "roles": "*"
+    "roles": "*",
+    "md5": "*"
 
   },
   "devDependencies": {

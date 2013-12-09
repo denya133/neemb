@@ -1,0 +1,4 @@
+{
+    "adapter": "east-mongo",
+    "url": "mongodb://192.168.2.35:27017/neemb-server-dev"
+}
