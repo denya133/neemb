@@ -6,7 +6,7 @@ block head
   link(rel='stylesheet', href='stylesheets/app.css')
   //if IE 7
       link(rel='stylesheet', href='stylesheets/font-awesome-ie7.min.css')
-  script(src='javascripts/head.js')
+  script(src='javascripts/head.min.js')
 
 block content
   .container
@@ -30,8 +30,8 @@ block content
     
 block scripts
   script(src='/socket.io/socket.io.js')
-  script(src='javascripts/vendor.js')
-  script(src='javascripts/app.js', defer, onload="require('initialize');")
+  script(src='javascripts/vendor.min.js')
+  script(src='javascripts/app.min.js', defer, onload="require('initialize');")
   // Google Analytics: change UA-XXXXX-X to be your site's ID.
   script
     var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
