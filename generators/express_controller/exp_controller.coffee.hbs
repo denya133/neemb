@@ -1,0 +1,66 @@
+mongoose  = require 'mongoose'
+roles     = require '../config/roles'
+
+{{#camelize}}{{name}}{{/camelize}}      = mongoose.model '{{#camelize}}{{name}}{{/camelize}}'
+
+module.exports = (app, passport, config)->
+  ###*
+   * Get {{name}}s items
+  ###
+  app.get "/rest-api/{{name}}s", roles.middleware("neemb/view"), (req, res) ->
+    console.log 'to {{name}}s.exports.index'
+    params = {}
+    if req.query.ids
+      params =
+        _id:
+          $in: req.query.ids
+    {{#camelize}}{{name}}{{/camelize}}.find(params).exec (err, {{name}}s) ->
+      return res.json error: err  if err      
+      res.json 200,
+        {{name}}s: {{name}}s
+
+  ###*
+   * Create {{name}} item
+  ###
+  app.post "/rest-api/{{name}}s", roles.middleware("neemb/view"), (req, res) ->
+    console.log 'to {{name}}s.exports.create'
+    {{name}} = new {{#camelize}}{{name}}{{/camelize}}(
+      req.body.{{name}}
+    )
+    {{name}}.save (err)->
+      res.json 500, {error: err}  if err
+      res.json 200,
+        {{name}}: {{name}}
+
+  ###*
+   * Update {{name}} item
+  ###
+  app.put "/rest-api/{{name}}s/:{{name}}Id", passport.authenticate("bearer",
+      session: false
+  ), roles.middleware("neemb/view"), (req, res) ->
+    console.log 'to {{name}}s.exports.update'
+    {{#camelize}}{{name}}{{/camelize}}.findByIdAndUpdate req.params.id, req.body.{{name}}, (err, {{name}})->
+      res.json 500, {error: err}  if err
+      res.json 200,
+        {{name}}: {{name}}
+
+  ###*
+   * Delete {{name}} item
+  ###
+  app.delete "/rest-api/{{name}}s/:{{name}}Id", passport.authenticate("bearer",
+      session: false
+  ), roles.middleware("neemb/view"), (req, res)->
+    console.log 'to {{name}}s.exports.delete'
+    {{#camelize}}{{name}}{{/camelize}}.findByIdAndRemove req.params.{{name}}Id, (err, {{name}})->
+      res.json 500, {error: err}  if err
+      res.send 200, ''
+
+  ###*
+   * Get one {{name}} item
+  ###
+  app.get "/rest-api/{{name}}s/:{{name}}Id", roles.middleware("neemb/view"), (req, res) ->
+    console.log 'to {{name}}s.exports.show'
+    {{#camelize}}{{name}}{{/camelize}}.findById req.params.{{name}}Id, (err, {{name}}) ->
+      return res.json err  if err
+      res.json
+        {{name}}: {{name}}
