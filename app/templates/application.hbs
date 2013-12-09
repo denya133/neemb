@@ -2,27 +2,39 @@
   <div class="container">
     <h1>NEEMB</h1>
     <nav class="nav">
-      <button type="button" class="btn btn-default">
-        {{#linkTo 'index'}}Home{{/linkTo}}
-      </button>
-      <button type="button" class="btn btn-default">
-        {{#linkTo 'users'}}Users{{/linkTo}}
-      </button>
+      {{#linkTo 'index'}}
+        <button type="button" class="btn btn-default">
+          Home
+        </button>
+      {{/linkTo}}
+      {{#linkTo 'users.index'}}
+        <button type="button" class="btn btn-default">
+          Users
+        </button>
+      {{/linkTo}}
 
       {{#if isAuthenticated}}
-        <button type="button" class="btn btn-warning">
-          <a href="#">{{currentUser.email}}</a>
-        </button>
-        <button type="button" class="btn btn-danger">
-          <a href="#" {{action 'logout'}}>Logout</a>
-        </button>
+        <a href="#">
+          <button type="button" class="btn btn-warning">
+            {{currentUser.email}}
+          </button>
+        </a>
+        <a href="#" {{action 'logout'}}>
+          <button type="button" class="btn btn-danger">
+            Logout
+          </button>
+        </a>
       {{else}}
-        <button type="button" class="btn btn-success">
-          {{#linkTo 'users.new'}}Register{{/linkTo}}
-        </button>
-        <button type="button" class="btn btn-success">
-          {{#linkTo 'sessions.new'}}Login{{/linkTo}}
-        </button>
+        {{#linkTo 'users.create'}}
+          <button type="button" class="btn btn-success">
+            Register
+          </button>
+        {{/linkTo}}
+        {{#linkTo 'sessions.new'}}
+          <button type="button" class="btn btn-success">
+            Login
+          </button>
+        {{/linkTo}}
       {{/if}}
     </nav>
   </div>

@@ -2,7 +2,11 @@
 # Example:
 # `scaffolt route user`
 require 'routes/Application'
+require 'routes/Authorized'
 require 'routes/Index'
-require 'routes/Users'
-require 'routes/UsersNew'
 require 'routes/SessionsNew'
+require 'routes/UsersIndex'
+require 'routes/UsersCreate'
+require 'routes/UserIndex'
+require 'routes/UserEdit'
+require 'routes/UserDelete'

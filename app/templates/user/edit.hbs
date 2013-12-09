@@ -1,0 +1,12 @@
+			{{#linkTo "user"}}
+				{{bs-icon name="circle-arrow-left"}}Back to User
+			{{/linkTo}}
+			<div class="body">
+				<div class="info">
+					{{partial "user/form"}}
+				</div>
+				<div class="actions">
+					<a class="btn"{{action "save"}}>Save</a>
+					<a class="btn"{{action "cancel"}}>Cancel</a>
+				</div>
+			</div>

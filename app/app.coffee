@@ -24,4 +24,7 @@ module.exports = App = Ember.Application.create
   # ###
   # LOG_TRANSITIONS: yes
 
+Ember.ControllerMixin.reopen
+  needs: 'application'
+  
 window.App = App

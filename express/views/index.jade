@@ -4,6 +4,8 @@ include mixins/packages
 
 block head
   link(rel='stylesheet', href='stylesheets/app.css')
+  link(rel="stylesheet", type="text/css", href="stylesheets/main.css")
+  link(rel="stylesheet", type="text/css", href="stylesheets/responsive.css")
   //if IE 7
       link(rel='stylesheet', href='stylesheets/font-awesome-ie7.min.css')
   script(src='javascripts/head.min.js')
@@ -17,7 +19,7 @@ block content
           small= version
     .row
       .span12
-        .hero-unit.well
+        .row.well
           p Welcome to Node.js with Ember, Express and Mongo on Brunch way.
           p: small <i class="icon-thumbs-up"></i> Based on 
             p: a(href="https://github.com/huafu/brunch-with-ember-and-bootstrap", target="_blank") Brunch with Ember and Bootstrap
