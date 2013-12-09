@@ -14,21 +14,6 @@ and the skeleton from Elving Rodriguez [brunch-with-hipsters](https://github.com
 which was used for organizing code of express application on Node.js  
 
 
-## Warning
-Browser doesn't auto-reload because use connections to DB
-```
-mongoose  = require 'mongoose'
-
-# db connection
-db = mongoose.connect config_new.db
-
-# Models
-models_path = __dirname + '/models'
-fs.readdirSync(models_path).forEach (file)->
-  require models_path + '/' + file
-```
-
-
 ## Versions
 - [Ember v1.0.0](http://emberjs.com)
 - [Ember Data v1.0.0b2](https://github.com/emberjs/data)
@@ -49,22 +34,69 @@ fs.readdirSync(models_path).forEach (file)->
 
 
 ## Getting started
-Create a new project using this skeleton:
+
+Download node.js server from [http://nodejs.org/](http://nodejs.org/download/)
+
+Unarchive sources
+
+Install node.js:
+```
+cd <folder with sources>/
+make
+make install
+```
+
+Create config for install Mongo:
+```
+sudo nano /etc/yum.repos.d/mongodb.repo
+```
+
+Write in file
+```
+[mongodb]
+name=MongoDB Repository
+baseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/
+gpgcheck=0
+enabled=1
+```
+
+Install Mongo:
+```
+yum install mongo-10gen mongo-10gen-server
+```
+
+Cloning repository:
 ```
 git clone git@github.com:denya133/neemb.git <appname>
+```
+
+Install npm modules:
+```
 cd <appname>
-brunch watch --server
+sudo npm install brunch@1.7.4 -g
+sudo npm install east east-mongo -g
+sudo npm install coffee-script -g
+sudo npm install cake -g
+sudo npm install packer -g
+npm install
 ```
-Open [http://localhost:3333](http://localhost:3333) on your browser.
 
-
-## Production release
-To create a production release (smaller vendor files, js and css packed), use the cake build command:
+Start migrations with:
 ```
-cake build
+east init #for create migrations folder. If folder exist then it comand not need execute
+east migrate
 ```
-It'll generate a production ready `public` and create an archive of it in `public.tgz` that you can then backup or send to your servers.
 
+For start server in development environment:
+```
+ brunch watch -s -p 3000
+```
+
+For create a production release and start server in production environment:
+```
+chmod -x start.sh #for set start.sh file executable mod
+./start.sh
+```
 
 ## Creating API documentation
 You can easily create the API documentation fo your project using:

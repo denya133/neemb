@@ -1,3 +1,6 @@
+* __0.6.0__
+    * Updated server configs, added some new features, added new generators
+
 * __0.5.0__
     * Merged brunch skeletons: brunch-with-ember-and-bootstrap and ExpressBrunchJade
 
