@@ -48,7 +48,10 @@
     "node-uuid": "*",
     "passport": "*",
     "passport-http-bearer": "*",
-    "view-helpers": "*"
+    "view-helpers": "*",
+
+    "lodash": "*",
+    "roles": "*"
 
   },
   "devDependencies": {
