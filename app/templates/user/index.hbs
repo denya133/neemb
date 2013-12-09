@@ -1,8 +1,8 @@
-			{{#if client}}
-			{{#linkTo "users" client}}
+			
+			{{#linkTo "users.index"}}
 				{{bs-icon name="circle-arrow-left"}}Back to Users
 			{{/linkTo}}
-			{{/if}}
+			
 			<div class="body">
 				{{#if controllers.application.delRights}}
                     <div class="actions">
@@ -12,39 +12,10 @@
                         {{#linkTo "user.delete" this classNames="btn"}}
                             {{bs-icon name="remove"}}Delete User
                         {{/linkTo}}
-                        {{#linkTo "phones.create" classNames="btn"}}
-                            {{bs-icon name="plus"}}Add New Phone Number
-                        {{/linkTo}}
                     </div>
 				{{/if}}
 				<div>First name</div>
 				<span>{{first_name}}</span>
 				<div>Last name</div>
 				<span>{{last_name}}</span>
-				<section class="box">
-					<div class="box-title">Phone Numbers</div>
-					<div class="box-body">
-						<ul class="links">
-						{{#each phone in model.phones}}
-							<li>
-								{{#if controllers.application.delRights}}
-								<div class="actions">
-								{{#linkTo "phone.delete" phone}}
-									{{bs-icon name="remove"}}
-								{{/linkTo}}
-								{{#linkTo "phone.edit" phone}}
-									{{bs-icon name="pencil"}}
-								{{/linkTo}}
-								</div>
-								{{/if}}
-								<div class="title">
-								{{#linkTo "phone.index" phone}}
-									{{phone.phoneNumber}}
-								{{/linkTo}}
-								</div>
-							</li>
-						{{/each}}
-						</ul>
-					</div>
-				</section>
 			</div>

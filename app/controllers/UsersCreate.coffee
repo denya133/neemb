@@ -18,22 +18,21 @@ module.exports = App.UsersCreateController = Ember.ObjectController.extend
 
   # needs: 'client'
 
-  # actions:
-  #   save: () ->
-  #     controller = this
-  #     user = @get 'model'
-  #     client = @get('controllers.client.model')
-  #     @get('store').find('role', {name: 'user'}).then (roles)->
-  #       user.set 'password', CryptoJS.MD5(user.get 'pass').toString()
-  #       user.set 'client', client.get 'id'
-  #       user.set 'role', roles.get('content')[0]
-  #       user.save().then (user) ->
-  #         client.get('users').pushObject user
-  #         client.save().then (client) ->
-  #           controller.transitionToRoute 'user.index', user
+  actions:
+    save: () ->
+      controller = this
+      user = @get 'model'
+      # client = @get('controllers.client.model')
+      @get('store').find('role', {name: 'user'}).then (roles)->
+        user.set 'password', CryptoJS.MD5(user.get 'pass').toString()
+        # user.set 'client', client.get 'id'
+        user.set 'role', roles.get('content')[0]
+        user.save().then (user) ->
+          # client.get('users').pushObject user
+          # client.save().then (client) ->
+          controller.transitionToRoute 'user.index', user
 
 
-  #   cancel: () ->
-  #     client = @get 'controllers.client.model'
-  #     @get('model').deleteRecord()
-  #     @transitionToRoute 'users.index', client
+    cancel: () ->
+      @get('model').deleteRecord()
+      @transitionToRoute 'index'

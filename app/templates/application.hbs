@@ -7,13 +7,13 @@
           Home
         </button>
       {{/linkTo}}
-      {{#linkTo 'users.index'}}
-        <button type="button" class="btn btn-default">
-          Users
-        </button>
-      {{/linkTo}}
 
       {{#if isAuthenticated}}
+        {{#linkTo 'users.index'}}
+          <button type="button" class="btn btn-default">
+            Users
+          </button>
+        {{/linkTo}}
         <a href="#">
           <button type="button" class="btn btn-warning">
             {{currentUser.email}}
@@ -25,11 +25,6 @@
           </button>
         </a>
       {{else}}
-        {{#linkTo 'users.create'}}
-          <button type="button" class="btn btn-success">
-            Register
-          </button>
-        {{/linkTo}}
         {{#linkTo 'sessions.new'}}
           <button type="button" class="btn btn-success">
             Login
