@@ -1,7 +1,12 @@
 {
     "files": [{
         "from": "exp_controller.coffee.hbs",
-        "to": "express/controllers/{{name}}_controller.coffee"
+        "to": "express/controllers/{{name}}s_controller.coffee"
+    },
+    {
+      "from": "routes.coffee.hbs",
+      "to": "express/config/routes.coffee",
+      "method": "append"
     }],
     "dependencies": []
 }
