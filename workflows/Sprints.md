@@ -7,6 +7,9 @@
 
 `v0.0.0 (YYYY-MM-DD) - <статус>`
 
+Первым в списке создаем:
+* !All version is Sprints for implementation
+
 
 ## Статусы:
 
